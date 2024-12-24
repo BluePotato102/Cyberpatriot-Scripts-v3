@@ -28,7 +28,10 @@ def add_user(user, is_admin=False):
 
 def set_password(user, password="CyberPatriot@24"):
     """Set the password for a user."""
-    subprocess.run(['sudo', 'chpasswd'], input=f"{user}:{password}".encode(), check=False)
+    try: 
+        subprocess.run(['sudo', 'chpasswd'], input=f"{user}:{password}".encode(), check=False)
+    except:
+        pass
 
 def ensure_group_membership(user, is_admin):
     """Ensure the user has the correct group membership."""
