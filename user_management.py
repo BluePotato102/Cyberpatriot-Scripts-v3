@@ -33,10 +33,27 @@ def set_password(user, password="CyberPatriot@24"):
 
 def ensure_group_membership(user, is_admin):
     """Ensure the user has the correct group membership."""
+    # Check if the user is already a member of the sudo group using the 'id' command
+    result = subprocess.run(['id', '-nG', user], capture_output=True, text=True)
+    
+    if result.returncode != 0:
+        print(f"Error: Failed to get group membership for {user}.")
+        return
+    
+    groups = result.stdout.split()
+
+    # If the user should be an admin, ensure they're in the sudo group
     if is_admin:
-        subprocess.run(['sudo', 'usermod', '-aG', 'sudo', user], check=False)
+        if 'sudo' not in groups:
+            subprocess.run(['sudo', 'usermod', '-aG', 'sudo', user], check=False)
+            print(f"Added {user} to the sudo group.")
+    
+    # If the user should not be an admin, ensure they're not in the sudo group
     else:
-        subprocess.run(['sudo', 'gpasswd', '-d', user, 'sudo'], check=False)
+        if 'sudo' in groups:
+            subprocess.run(['sudo', 'gpasswd', '-d', user, 'sudo'], check=False)
+            print(f"Removed {user} from the sudo group.")
+
 
 def change_password_policy(user):
     """Change the password policy for the given user."""
