@@ -72,13 +72,9 @@ def confirm_removal(user):
 
 def set_user_shell(user, shell):
     """Set the user's shell to a given value, if not already set."""
-    if user in CRITICAL_USERS:
-        print(f"Skipping shell change for critical user: {user}")
-        return
-
     # Get the current shell of the user
     try:
-        with open(f'/etc/passwd', 'r') as passwd_file:
+        with open('/etc/passwd', 'r') as passwd_file:
             for line in passwd_file:
                 if line.startswith(user + ":"):
                     current_shell = line.strip().split(":")[-1]
@@ -92,6 +88,7 @@ def set_user_shell(user, shell):
 
     except FileNotFoundError:
         print("Error: /etc/passwd file not found!")
+
 
 
 def main():
