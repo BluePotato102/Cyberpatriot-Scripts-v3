@@ -113,18 +113,10 @@ def main():
 
     # Step 6: Set up shell for system and service users
     for user in system_users:
-        # Set shell to /usr/sbin/nologin for system/service accounts by default
-        if user in CRITICAL_USERS:
-            set_user_shell(user, '/usr/sbin/nologin')
-            print(f"Set shell for {user} to /usr/sbin/nologin")
-        elif user in all_authorized_users:
-            # Set shell to /bin/bash for authorized users
+        if user in all_authorized_users:
             set_user_shell(user, '/bin/bash')
-            print(f"Set shell for {user} to /bin/bash")
         else:
-            # Ensure system accounts have /usr/sbin/nologin
             set_user_shell(user, '/usr/sbin/nologin')
-            print(f"Set shell for {user} to /usr/sbin/nologin")
 
 if __name__ == "__main__":
     main()
