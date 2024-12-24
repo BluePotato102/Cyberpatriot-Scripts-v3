@@ -81,7 +81,8 @@ def set_user_shell(user, shell):
                     break
 
         if current_shell == shell:
-            print(f"User {user} already has the desired shell: {shell}")
+            # print(f"User {user} already has the desired shell: {shell}")
+            pass
         else:
             subprocess.run(['sudo', 'usermod', '-s', shell, user], check=True)
             print(f"Changed shell for {user} to {shell}")
