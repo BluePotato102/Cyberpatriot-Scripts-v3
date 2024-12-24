@@ -71,4 +71,5 @@ def refresh_sysctl():
 # Run the functions
 set_sysctl_parameters(sysctl_settings)
 ensure_sysctl_in_conf(sysctl_settings, sysctl_conf_path)
+subprocess.run(["sudo", "grub-editenv", "/boot/grub/grubenv", "set", "boot_once=true"])
 refresh_sysctl()
