@@ -28,10 +28,8 @@ def add_user(user, is_admin=False):
 
 def set_password(user, password="CyberPatriot@24"):
     """Set the password for a user."""
-    try: 
-        subprocess.run(['sudo', 'chpasswd'], input=f"{user}:{password}".encode(), check=False)
-    except:
-        pass
+    subprocess.run(['sudo', 'chpasswd'], input=f"{user}:{password}".encode(), check=False)
+
 
 def ensure_group_membership(user, is_admin):
     """Ensure the user has the correct group membership."""
@@ -73,8 +71,28 @@ def confirm_removal(user):
     return response == 'y'
 
 def set_user_shell(user, shell):
-    """Set the user's shell to a given value."""
-    subprocess.run(['sudo', 'chsh', '-s', shell, user], check=True)
+    """Set the user's shell to a given value, if not already set."""
+    if user in CRITICAL_USERS:
+        print(f"Skipping shell change for critical user: {user}")
+        return
+
+    # Get the current shell of the user
+    try:
+        with open(f'/etc/passwd', 'r') as passwd_file:
+            for line in passwd_file:
+                if line.startswith(user + ":"):
+                    current_shell = line.strip().split(":")[-1]
+                    break
+
+        if current_shell == shell:
+            print(f"User {user} already has the desired shell: {shell}")
+        else:
+            subprocess.run(['sudo', 'usermod', '-s', shell, user], check=True)
+            print(f"Changed shell for {user} to {shell}")
+
+    except FileNotFoundError:
+        print("Error: /etc/passwd file not found!")
+
 
 def main():
     # Read the list of authorized admins and users from users.txt
