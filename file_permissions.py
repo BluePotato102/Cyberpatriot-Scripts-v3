@@ -34,9 +34,9 @@ def file_permissions():
 def directory_permissions():
     """Sets appropriate permissions for critical directories, recursively."""
     directories = {
-        "/etc/grub.d": "755",
-        "/etc/pam.d": "755",
-        "/etc/security": "750"
+        "/etc/grub.d": "640",
+        "/etc/pam.d": "640",
+        "/etc/security": "640"
     }
 
     for directory, perm in directories.items():
@@ -62,8 +62,8 @@ def directory_permissions():
 
 def run():
     """Runs the permission correction functions."""
-    file_permissions()
     directory_permissions()
+    file_permissions()
 
 if __name__ == "__main__":
     run()
