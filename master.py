@@ -8,6 +8,7 @@ import sysctl_hardening
 import mediascript
 import firewall
 import package_audit
+import secure_sudo
 
 banner = """
   ____  ____     ___  __ __      __ __   ____  ______  _____
@@ -33,6 +34,7 @@ def main():
         print("7. Media Management (Bash)")
         print("8. Firewall Setup")
         print("9. Package Audit")
+        print("10. Secure Sudo")
         print("0. Exit")
         
         choice = input("Enter your choice (0-9): ")
@@ -55,6 +57,8 @@ def main():
             firewall.run()
         elif choice == "9":
             package_audit.run()
+        elif choice == "10":
+            secure_sudo.run()
         elif choice == "0":
             print("Exiting...")
             break
