@@ -13,7 +13,8 @@ packages = [
     'tcpflow', 'tcpreplay', 'tcpdump', 'sslyze', 'powersploit', 'reaver', 'pixiewps', 
     'photon', 'lynis', 'joomscan', 'ettercap', 'sslstrip', 'slowhttptest', 'skipfish', 
     'seclists', 'pyrit', 'proxychains', 'proxychains-ng', 'vsftpd', 'samba', 'apache', 
-    'nginx', 'pop3', 'smtp', 'squid'
+    'nginx', 'pop3', 'smtp', 'squid', 'airmon-ng', 'hydra-gtk', 'johnny', 'hive', 
+    'burp', 'cainandable', 'myheritage', 'zenmap', 'telnet', 'postfix', 'lcrack', 'sl', 'Freeciv'
 ]
 
 # Function to check if a package is installed
