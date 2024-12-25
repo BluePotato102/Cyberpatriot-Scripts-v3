@@ -18,6 +18,7 @@ def check_permissions():
         "/root/.ssh/authorized_keys": "600",
         "/etc/pam.conf": "644",
         "/etc/default/grub": "644",  # Added GRUB file for checking
+        "/etc/grub.d/40_custom": "644"
     }
     
     for file, perm in files.items():
