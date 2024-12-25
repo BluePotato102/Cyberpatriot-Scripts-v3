@@ -72,7 +72,8 @@ def confirm_removal(user):
 
 def set_user_shell(user, shell):
     """Set the user's shell to a given value, if not already set."""
-    # Get the current shell of the user
+    current_shell = None  # Initialize `current_shell` before use
+    
     try:
         with open('/etc/passwd', 'r') as passwd_file:
             for line in passwd_file:
@@ -80,15 +81,20 @@ def set_user_shell(user, shell):
                     current_shell = line.strip().split(":")[-1]
                     break
 
-        if current_shell == shell:
-            # print(f"User {user} already has the desired shell: {shell}")
-            pass
+        # If the user was found in /etc/passwd
+        if current_shell is not None:
+            if current_shell == shell:
+                # print(f"User {user} already has the desired shell: {shell}")
+                pass
+            else:
+                subprocess.run(['sudo', 'usermod', '-s', shell, user], check=True)
+                print(f"Changed shell for {user} to {shell}")
         else:
-            subprocess.run(['sudo', 'usermod', '-s', shell, user], check=True)
-            print(f"Changed shell for {user} to {shell}")
-
+            print(f"User {user} not found in /etc/passwd!")
+    
     except FileNotFoundError:
         print("Error: /etc/passwd file not found!")
+
 
 
 
