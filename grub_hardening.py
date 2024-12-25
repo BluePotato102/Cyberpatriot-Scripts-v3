@@ -80,7 +80,8 @@ def generate_grub_password_hash(password):
         result = subprocess.run(
             ['grub-mkpasswd-pbkdf2'],
             input=password.encode(),
-            capture_output=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
             check=True
         )
         # Extract the hashed password from the command output
@@ -90,6 +91,7 @@ def generate_grub_password_hash(password):
     except subprocess.CalledProcessError as e:
         print(f"Error generating password hash: {e}")
         return None
+
 
 def add_grub_password_protection(password_hash):
     """Add GRUB password protection to /etc/grub.d/40_custom."""
