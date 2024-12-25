@@ -10,6 +10,7 @@ import firewall
 import package_audit
 import secure_sudo
 import grub_hardening
+import fix_services
 
 banner = """
   ____  ____     ___  __ __      __ __   ____  ______  _____
@@ -37,9 +38,10 @@ def main():
         print("9. Package Audit")
         print("10. Secure Sudo")
         print("11. Grub Configuration")
+        print("12. Fix Services")
         print("0. Exit")
         
-        choice = input("Enter your choice (0-11): ")
+        choice = input("Enter your choice (0-12): ")
         
         if choice == "1":
             user_management.run()
@@ -63,6 +65,8 @@ def main():
             secure_sudo.run()
         elif choice == "11":
             grub_hardening.run()
+        elif choice == "12":
+            fix_services.run()
         elif choice == "0":
             print("Exiting...")
             break
