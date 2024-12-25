@@ -30,9 +30,11 @@ def check_package_installed(package):
         print(f"Error checking package {package}: {e}")
         return False
 
-
-if __name__ == "__main__":
+def run():
     # Loop through each package and check if it's installed
     for package in packages:
         if check_package_installed(package):
             print(f"{package} is installed")
+
+if __name__ == "__main__":
+    run()
