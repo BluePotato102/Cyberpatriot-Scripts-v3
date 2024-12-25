@@ -33,7 +33,7 @@ def main():
         print("4. SSH Configuration")
         print("5. File Permissions Check/Secure")
         print("6. Sysctl Configuration")
-        print("7. Media Management (Bash)")
+        print("7. Media Management")
         print("8. Firewall Setup")
         print("9. Package Audit")
         print("10. Secure Sudo")
