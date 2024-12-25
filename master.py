@@ -9,6 +9,7 @@ import mediascript
 import firewall
 import package_audit
 import secure_sudo
+import grub_hardening
 
 banner = """
   ____  ____     ___  __ __      __ __   ____  ______  _____
@@ -35,9 +36,10 @@ def main():
         print("8. Firewall Setup")
         print("9. Package Audit")
         print("10. Secure Sudo")
+        print("11. Grub Configuration")
         print("0. Exit")
         
-        choice = input("Enter your choice (0-9): ")
+        choice = input("Enter your choice (0-11): ")
         
         if choice == "1":
             user_management.run()
@@ -59,6 +61,8 @@ def main():
             package_audit.run()
         elif choice == "10":
             secure_sudo.run()
+        elif choice == "11":
+            grub_hardening.run()
         elif choice == "0":
             print("Exiting...")
             break
