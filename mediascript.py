@@ -19,7 +19,7 @@ def run():
     ]
     
     # Run the command using subprocess.run() and capture the output
-    result = subprocess.run(find_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    result = subprocess.run(find_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
     
     if result.returncode == 0:
         # Print the output if the command is successful
