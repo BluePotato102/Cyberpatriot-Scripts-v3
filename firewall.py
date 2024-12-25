@@ -22,6 +22,10 @@ def configure_firewall():
     run_command("sudo ufw allow http")
     run_command("sudo ufw allow https")
 
+
+def run():
+    configure_firewall()
+
 # Run the configuration
 if __name__ == "__main__":
-    configure_firewall()
+    run()
