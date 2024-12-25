@@ -7,9 +7,9 @@ def run_command(command):
 
 def check_permissions():
     files = {
-        "/etc/passwd": "640",
+        "/etc/passwd": "644",
         "/etc/shadow": "600",
-        "/etc/group": "640",
+        "/etc/group": "644",
         "/etc/gshadow": "600",
         "/etc/ssh/sshd_config": "600",
         "/etc/security/access.conf": "600",
