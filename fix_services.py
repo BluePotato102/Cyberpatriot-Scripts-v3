@@ -14,7 +14,7 @@ def disable_unnecessary_services():
     print("Disabling unnecessary services...")
     services = [
         "bluetooth", "cups", "avahi-daemon", "rpcbind", "nfs-common", 
-        "NetworkManager", "apache2", "mysql", "postfix", "smbd", "smtp"
+        "NetworkManager", "apache2", "mysql", "postfix", "smbd", "postfix"
     ]
     for service in services:
         run_command(f"sudo systemctl disable {service}")
