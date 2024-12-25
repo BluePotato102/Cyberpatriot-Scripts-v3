@@ -1,19 +1,19 @@
 import subprocess
+import os
 
 def run_command(command):
     """Runs a system command and logs the output."""
     try:
-        result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        if result.returncode != 0:
+        # Use subprocess.Popen for Python 3.6 compatibility
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        stdout, stderr = process.communicate()  # Get output and errors
+        if process.returncode != 0:
             print(f"Command failed: {command}")
-            print(f"Error: {result.stderr}")
-        else:
-            print(f"Output: {result.stdout}")
-        return result.returncode == 0
+            print(f"Error: {stderr}")
+        return process.returncode == 0
     except Exception as e:
         print(f"Error running command {command}: {e}")
         return False
-
 
 def disable_unnecessary_services():
     """Disables and stops unnecessary services."""
