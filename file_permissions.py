@@ -7,18 +7,18 @@ def run_command(command):
 
 def check_permissions():
     files = {
-        "/etc/passwd": "644",
+        "/etc/passwd": "640",
         "/etc/shadow": "600",
-        "/etc/group": "644",
+        "/etc/group": "640",
         "/etc/gshadow": "600",
         "/etc/ssh/sshd_config": "600",
         "/etc/security/access.conf": "600",
-        "/etc/security/limits.conf": "644",
+        "/etc/security/limits.conf": "640",
         "/etc/crontab": "600",
         "/root/.ssh/authorized_keys": "600",
-        "/etc/pam.conf": "644",
-        "/etc/default/grub": "644",  # Added GRUB file for checking
-        "/etc/grub.d/40_custom": "644"
+        "/etc/pam.conf": "640",
+        "/etc/default/grub": "640",  # Added GRUB file for checking
+        "/etc/grub.d/40_custom": "640"
     }
     
     for file, perm in files.items():
