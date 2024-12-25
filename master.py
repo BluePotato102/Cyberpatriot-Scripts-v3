@@ -26,7 +26,7 @@ print(banner)
 
 def main():
     while True:
-        print("\n=== Linux Hardening Menu ===")
+        print("\n=== Linux Hardening V3 ===")
         print("1. User Managment")
         print("2. Guest Users & Lockout")
         print("3. Password Length/Algorithm/Security")
