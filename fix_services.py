@@ -20,7 +20,7 @@ def disable_unnecessary_services():
     print("Disabling unnecessary services...")
     services = [
         "bluetooth", "cups", "avahi-daemon", "rpcbind", "nfs-common", 
-        "NetworkManager", "apache2", "mysql", "postfix", "smbd"
+        "NetworkManager", "apache2", "mysql", "postfix", "smbd", "dovecot-pop3d"
     ]
     for service in services:
         print(f"Disabling {service}...")
