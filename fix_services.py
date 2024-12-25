@@ -5,8 +5,12 @@ def run_command(command):
     """Runs a system command and logs the output."""
     try:
         result = subprocess.run(command, shell=True, capture_output=True, text=True)
+        if result.returncode != 0:
+            print(f"Command failed: {command}")
+            print(f"Error: {result.stderr}")
         return result.returncode == 0
     except Exception as e:
+        print(f"Error running command {command}: {e}")
         return False
 
 def disable_unnecessary_services():
@@ -17,6 +21,7 @@ def disable_unnecessary_services():
         "NetworkManager", "apache2", "mysql", "postfix", "smbd"
     ]
     for service in services:
+        print(f"Disabling {service}...")
         run_command(f"sudo systemctl disable {service}")
         run_command(f"sudo systemctl stop {service}")
 
@@ -28,6 +33,7 @@ def enable_necessary_services():
         "cron", "systemd-timesyncd", "dbus"
     ]
     for service in services:
+        print(f"Enabling {service}...")
         run_command(f"sudo systemctl enable {service}")
         run_command(f"sudo systemctl start {service}")
 
