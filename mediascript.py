@@ -1,6 +1,6 @@
 import subprocess
 
-def main():
+def run():
     # Define the find command with all the options and file types
     find_command = [
         "find", "/home", "-type", "f", 
@@ -29,4 +29,4 @@ def main():
         print("Error:", result.stderr)
 
 if __name__ == "__main__":
-    main()
+    run()
