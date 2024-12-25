@@ -71,8 +71,11 @@ def refresh_sysctl():
         print(f"Failed to refresh sysctl settings: {e}")
 
 # Code block that runs when the script is executed directly
-if __name__ == "__main__":
+def run():
     set_sysctl_parameters(sysctl_settings)
     ensure_sysctl_in_conf(sysctl_settings, sysctl_conf_path)
     subprocess.run(["sudo", "grub-editenv", "/boot/grub/grubenv", "set", "boot_once=true"])
     refresh_sysctl()
+
+if __name__ == "__main__":
+    run()
