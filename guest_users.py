@@ -59,6 +59,9 @@ def disable_guest_users():
     except Exception as e:
         print(f"An error occurred while disabling guest users: {e}")
 
-if __name__ == "__main__":
+def run():
     modify_common_auth()
     disable_guest_users()
+
+if __name__ == "__main__":
+    run()
