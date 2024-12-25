@@ -52,7 +52,9 @@ def restart_ssh_service():
     except subprocess.CalledProcessError as e:
         print(f"Failed to restart SSH service: {e}")
 
-# This block ensures the code runs only if the script is executed directly
-if __name__ == "__main__":
+def run():
     set_ssh_parameters(ssh_settings)
     restart_ssh_service()
+
+if __name__ == "__main__":
+    run()
