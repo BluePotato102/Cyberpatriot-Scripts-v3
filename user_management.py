@@ -92,7 +92,7 @@ def set_user_shell(user, shell):
 
 
 
-def main():
+def run():
     # Read the list of authorized admins and users from users.txt
     file_path = 'users.txt'
     authorized_admins, authorized_users = read_authorized_users(file_path)
@@ -138,4 +138,4 @@ def main():
             set_user_shell(user, '/usr/sbin/nologin')
 
 if __name__ == "__main__":
-    main()
+    run()
