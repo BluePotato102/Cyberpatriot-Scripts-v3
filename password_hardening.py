@@ -58,7 +58,7 @@ def enable_dictionary_checks():
         f.write("password requisite pam_pwquality.so retry=3\n")
     print("Dictionary-based password strength checks enabled.")
 
-def main():
+def run():
     """Master function to harden password policies."""
     print("Starting password hardening process...")
     remove_nullok_from_pam()
@@ -71,4 +71,4 @@ def main():
     print("Password hardening process completed.")
 
 if __name__ == "__main__":
-    main()
+    run()
