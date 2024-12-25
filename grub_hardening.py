@@ -116,14 +116,14 @@ def run():
     update_grub_file()
     
     # 2. Ask the user for a password and generate the hash
-    password = input("Enter a password to secure GRUB (this will be hashed): ")
-    password_hash = generate_grub_password_hash(password)
+    #password = input("Enter a password to secure GRUB (this will be hashed): ")
+    #password_hash = generate_grub_password_hash(password)
     
     # 3. Add password protection to GRUB
-    add_grub_password_protection(password_hash)
+    #add_grub_password_protection(password_hash)
     
     # 4. Regenerate GRUB
-    regenerate_grub()
+    #regenerate_grub()
 
 if __name__ == "__main__":
     run()
