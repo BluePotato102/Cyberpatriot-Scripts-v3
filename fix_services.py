@@ -4,8 +4,8 @@ import os
 def run_command(command):
     """Runs a system command and logs the output."""
     try:
-        # Use subprocess.Popen for Python 3.6 compatibility
-        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        # Use subprocess.Popen with universal_newlines=True for Python 3.6 compatibility
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
         stdout, stderr = process.communicate()  # Get output and errors
         if process.returncode != 0:
             print(f"Command failed: {command}")
