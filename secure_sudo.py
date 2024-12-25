@@ -27,7 +27,7 @@ def fix_permissions(file_path):
     os.chmod(file_path, 0o440)  # Standard sudoers file permission
 
 # Main processing function
-def process_sudoers_files():
+def run():
     # Process sudoers file
     if os.path.exists(sudoers_path):
         print(f"Processing {sudoers_path}")
@@ -50,4 +50,4 @@ def process_sudoers_files():
         print(f"Error: {sudoers_d_path} directory not found.")
 
 if __name__ == '__main__':
-    process_sudoers_files()
+    run()
