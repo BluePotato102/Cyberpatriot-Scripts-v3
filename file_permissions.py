@@ -1,13 +1,8 @@
 import os
 import stat
-import logging
-
-# Setup basic logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 
 def run_command(command):
     """Executes a shell command."""
-    logging.info(f"Executing command: {command}")
     os.system(command)
 
 def check_permissions():
@@ -29,10 +24,7 @@ def check_permissions():
         if os.path.exists(file):
             current_perm = oct(stat.S_IMODE(os.lstat(file).st_mode))
             if current_perm != '0o' + perm:
-                logging.warning(f"Permissions for {file} are {current_perm}, changing to {perm}")
                 run_command(f"chmod {perm} {file}")
-            else:
-                logging.info(f"Permissions for {file} are correct ({current_perm})")
 
 def check_pam_permissions():
     pam_dir = "/etc/pam.d/"
@@ -41,7 +33,6 @@ def check_pam_permissions():
     if os.path.exists(pam_dir):
         run_command(f"chown -R root:root {pam_dir}")
         run_command(f"chmod -R 755 {pam_dir}")
-        logging.info(f"Permissions for {pam_dir} set to 755, ownership set to root:root.")
     
     pam_files = [
         "/etc/pam.conf",
@@ -55,7 +46,6 @@ def check_pam_permissions():
         if os.path.exists(file):
             run_command(f"chmod 644 {file}")
             run_command(f"chown root:root {file}")
-            logging.info(f"Permissions for {file} set to 644, ownership set to root:root.")
 
 def check_ownership_and_permissions():
     dirs = {
@@ -73,7 +63,6 @@ def check_ownership_and_permissions():
             run_command(f"chown -R {owner} {dir}")
             run_command(f"find {dir} -type f -exec chmod 644 {{}} \;")
             run_command(f"find {dir} -type d -exec chmod 755 {{}} \;")
-            logging.info(f"Ownership and permissions set for directory {dir}.")
 
             # Check for world-writable files and directories
             run_command(f"find {dir} -type f -perm 0777 -exec ls -ld {{}} \;")
@@ -81,7 +70,6 @@ def check_ownership_and_permissions():
 
 def find_world_writable():
     # Check the entire filesystem for world-writable files and directories
-    logging.info("Searching for world-writable files...")
     run_command("find / -perm 0777 -type f -exec ls -ld {} \\;")
     run_command("find / -perm 0777 -type d -exec ls -ld {} \\;")
 
@@ -94,16 +82,13 @@ def add_security_permissions():
         if os.path.exists(dir):
             run_command(f"chmod 755 {dir}")
             run_command(f"chown root:root {dir}")
-            logging.info(f"Permissions for critical directory {dir} set to 755, ownership set to root:root.")
 
 def run():
-    logging.info("Starting permission and ownership checks...")
     check_permissions()
-    check_pam_permissions()
-    check_ownership_and_permissions()
-    find_world_writable()
-    add_security_permissions()
-    logging.info("Permission and ownership checks complete.")
+    #check_pam_permissions()
+    #check_ownership_and_permissions()
+    #find_world_writable()
+    #add_security_permissions()
 
 if __name__ == "__main__":
     run()
