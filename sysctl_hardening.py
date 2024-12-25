@@ -68,8 +68,9 @@ def refresh_sysctl():
     except subprocess.CalledProcessError as e:
         print(f"Failed to refresh sysctl settings: {e}")
 
-# Run the functions
-set_sysctl_parameters(sysctl_settings)
-ensure_sysctl_in_conf(sysctl_settings, sysctl_conf_path)
-subprocess.run(["sudo", "grub-editenv", "/boot/grub/grubenv", "set", "boot_once=true"])
-refresh_sysctl()
+# Code block that runs when the script is executed directly
+if __name__ == "__main__":
+    set_sysctl_parameters(sysctl_settings)
+    ensure_sysctl_in_conf(sysctl_settings, sysctl_conf_path)
+    subprocess.run(["sudo", "grub-editenv", "/boot/grub/grubenv", "set", "boot_once=true"])
+    refresh_sysctl()
