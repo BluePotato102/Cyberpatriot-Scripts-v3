@@ -25,6 +25,7 @@ def add_user(user, is_admin=False):
     subprocess.run(['sudo', 'useradd', '-m', user], check=False)
     if is_admin:
         subprocess.run(['sudo', 'usermod', '-aG', 'sudo', user], check=False)
+    print("added user" + user)
 
 def set_password(user, password="CyberPatriot@24"):
     """Set the password for a user."""
