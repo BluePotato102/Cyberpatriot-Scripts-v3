@@ -18,7 +18,8 @@ sysctl_settings = {
     "fs.protected_symlinks": 1,
     "kernel.sysrq": 0,
     "kernel.kptr_restrict": 2,
-    "net.ipv4.icmp_echo_ignore_broadcasts": 1
+    "net.ipv4.icmp_echo_ignore_broadcasts": 1,
+    "fs.suid_dumpable": 0 
 
 }
 
