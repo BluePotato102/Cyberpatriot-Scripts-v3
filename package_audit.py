@@ -15,7 +15,7 @@ packages = [
     'seclists', 'pyrit', 'proxychains', 'proxychains-ng', 'vsftpd', 'samba', 'apache', 
     'nginx', 'pop3', 'smtp', 'squid', 'airmon-ng', 'hydra-gtk', 'johnny', 'hive', 
     'burp', 'cainandable', 'myheritage', 'zenmap', 'telnet', 'postfix', 'lcrack', 'sl', 'Freeciv',
-    'netdiag', "sucrack"
+    'netdiag', "sucrack", "nfs"
 ]
 
 # Function to check if a package is installed
