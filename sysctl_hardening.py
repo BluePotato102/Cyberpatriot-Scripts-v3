@@ -19,8 +19,10 @@ sysctl_settings = {
     "kernel.sysrq": 0,
     "kernel.kptr_restrict": 2,
     "net.ipv4.icmp_echo_ignore_broadcasts": 1,
-    "fs.suid_dumpable": 0 
-
+    "fs.suid_dumpable": 0,
+    "net.ipv4.conf.all.accept_redirects": 0,
+    "net.ipv4.conf.default.accept_redirects": 0
+    
 }
 
 # Path to sysctl.conf
