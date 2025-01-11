@@ -6,7 +6,7 @@ def run_command(command):
     os.system(command)
 
 def file_permissions():
-    """Sets specific permissions for critical files."""
+    """Sets specific permissions and ownership for critical files."""
     files = {
         "/etc/passwd": "644",
         "/etc/shadow": "600",
@@ -30,13 +30,17 @@ def file_permissions():
             if current_perm != f'0o{perm}':
                 print(f"Changing permissions of {file} from {current_perm} to {perm}")
                 run_command(f"chmod {perm} {file}")
+            
+            # Change the ownership to root:root
+            print(f"Changing ownership of {file} to root:root")
+            run_command(f"sudo chown root:root {file}")
 
 def directory_permissions():
-    """Sets appropriate permissions for critical directories, recursively."""
+    """Sets appropriate permissions and ownership for critical directories, recursively."""
     directories = {
-        "/etc/grub.d": "640",
-        "/etc/pam.d": "640",
-        "/etc/security": "640"
+        "/etc/grub.d": "755",
+        "/etc/pam.d": "755",
+        "/etc/security": "755"
     }
 
     for directory, perm in directories.items():
@@ -51,6 +55,10 @@ def directory_permissions():
                 else:
                     print(f"Permissions for {root} are already correct.")
                 
+                # Change the ownership of the directory to root:root
+                print(f"Changing ownership of {root} to root:root")
+                run_command(f"sudo chown root:root {root}")
+                
                 # Set permissions for files inside the directory
                 for file in files:
                     file_path = os.path.join(root, file)
@@ -58,10 +66,13 @@ def directory_permissions():
                     if current_file_perm != f'0o{perm}':
                         print(f"Changing permissions of {file_path} from {current_file_perm} to {perm}")
                         run_command(f"chmod {perm} {file_path}")
-
+                    
+                    # Change the ownership of the file to root:root
+                    print(f"Changing ownership of {file_path} to root:root")
+                    run_command(f"sudo chown root:root {file_path}")
 
 def run():
-    """Runs the permission correction functions."""
+    """Runs the permission and ownership correction functions."""
     directory_permissions()
     file_permissions()
 
